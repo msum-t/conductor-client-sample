@@ -21,8 +21,6 @@ public class CustomerWorkers implements Worker {
 
         TaskResult result = new TaskResult(task);
         result.setStatus(TaskResult.Status.COMPLETED);
-
-
         return result;
     }
 }

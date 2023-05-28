@@ -12,14 +12,14 @@ public class WorkersMain {
     public static void main(String[] args) {
 
         TaskClient taskClient = new TaskClient();
-        taskClient.setRootURI("http://18.142.108.192:8080/api/");
+        taskClient.setRootURI("http://localhost:8080/api/");
 
         int threadCount = 5;
 
 //        Worker worker1 = new CustomerWorkers("sales_review");
 //        Worker worker2 = new CustomerWorkers("document_review");
         Worker worker1 = new CustomerWorkers("sdc");
-        Worker worker2 = new CustomerWorkers("sales_team_approval");
+        Worker worker2 = new CustomerWorkers("sales_review");
         Worker worker3 = new CustomerWorkers("ops_team_approval");
        // Worker worker4 = new CustomerWorkers("task_2");
 

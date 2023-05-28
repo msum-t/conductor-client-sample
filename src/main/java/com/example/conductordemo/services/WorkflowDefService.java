@@ -30,6 +30,7 @@ public class WorkflowDefService {
         workflowDef.setOwnerEmail("admin@gmail.com");
         workflowDef.setTimeoutPolicy(WorkflowDef.TimeoutPolicy.ALERT_ONLY);
         workflowDef.setTimeoutSeconds(0);
+        
         return workflowDef;
     }
 

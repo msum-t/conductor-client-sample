@@ -20,7 +20,7 @@ public class TaskService {
                         "method", HttpMethod.PUT.toString()
                 )
         ));
-        workflowTask.setType("HUMAN");
+        workflowTask.setType("SIMPLE");
         workflowTask.setStartDelay(0);
         workflowTask.setOptional(false);
         workflowTask.setAsyncComplete(false);
@@ -36,7 +36,7 @@ public class TaskService {
                         "method", HttpMethod.PUT.toString()
                 )
         ));
-        workflowTask.setType("HUMAN");
+        workflowTask.setType("SIMPLE");
         workflowTask.setStartDelay(0);
         workflowTask.setOptional(false);
         workflowTask.setAsyncComplete(false);
@@ -57,7 +57,7 @@ public class TaskService {
                         "method", HttpMethod.PUT.toString()
                 )
         ));
-        workflowTask.setType("HUMAN");
+        workflowTask.setType("SIMPLE");
         workflowTask.setStartDelay(0);
         workflowTask.setOptional(false);
         workflowTask.setAsyncComplete(false);
@@ -73,7 +73,7 @@ public class TaskService {
                         "method", HttpMethod.PUT.toString()
                 )
         ));
-        workflowTask.setType("HUMAN");
+        workflowTask.setType("SIMPLE");
         workflowTask.setStartDelay(0);
         workflowTask.setOptional(false);
         workflowTask.setAsyncComplete(false);
@@ -94,7 +94,7 @@ public class TaskService {
                         "method", HttpMethod.PUT.toString()
                 )
         ));
-        workflowTask.setType("HUMAN");
+        workflowTask.setType("SIMPLE");
         workflowTask.setStartDelay(0);
         workflowTask.setOptional(false);
         workflowTask.setAsyncComplete(false);

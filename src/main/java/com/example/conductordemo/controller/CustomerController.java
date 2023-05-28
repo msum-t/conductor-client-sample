@@ -4,34 +4,28 @@ import com.example.conductordemo.model.Customer;
 import com.example.conductordemo.services.WorkflowService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.netflix.conductor.client.http.TaskClient;
-import com.netflix.conductor.common.metadata.workflow.WorkflowTask;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.net.URI;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 @RequestMapping("/customer")
 @RestController
+@RequiredArgsConstructor
 public class CustomerController {
-    @Autowired
-    private RestTemplate restTemplate;
-    @Autowired
-    private WebClient webclient;
 
-    @Autowired
-    private WorkflowService workflowService;
+    private  final RestTemplate restTemplate;
+
+    private final WebClient webclient;
+
+    private final WorkflowService workflowService;
+
+    private final ObjectMapper objectMapper;
     public static final String rootUrl = "http://localhost:8080/api/";
 
     @PostMapping("/save/{workflowName}")
@@ -62,9 +56,7 @@ public class CustomerController {
         return Mono.just(Customer.builder().status("Sales review completed").build());
     }
     @PutMapping("/salesReview/{workflowId}")
-
     public Mono<Customer> updateSalesStatus(@RequestBody(required = false) Customer customer,@PathVariable String workflowId) {
-        Flux.range(1,1000).subscribe();
         return getTaskId(workflowId)
                 .flatMap(taskId -> webclient.post()
                         .uri("tasks")
@@ -86,7 +78,6 @@ public class CustomerController {
 
     @PutMapping("/rmReview/{workflowId}")
     public Mono<Customer> updateRmStatus(@RequestBody(required = false) Customer customer, @PathVariable String workflowId) {
-        Flux.range(1,1000).subscribe();
         return getTaskId(workflowId)
                 .flatMap(taskId -> webclient.post()
                         .uri("tasks")
@@ -116,7 +107,6 @@ public class CustomerController {
     }
     @PutMapping("/sdc/{workflowId}")
     public Mono<Customer> sdcStatus(@RequestBody(required = false) Customer customer,@PathVariable String workflowId) {
-        Flux.range(1,1000).subscribe();
         return getTaskId(workflowId)
                 .flatMap(taskId -> webclient.post()
                         .uri( "tasks")
@@ -129,7 +119,6 @@ public class CustomerController {
 
     @PutMapping("/docReview/{workflowId}")
     public Mono<Customer> updateDocStatus(@RequestBody(required = false) Customer customer,@PathVariable String workflowId) {
-        Flux.range(1,1000).subscribe();
         return getTaskId(workflowId)
                 .flatMap(taskId -> webclient.post()
                         .uri("tasks")
@@ -148,7 +137,6 @@ public class CustomerController {
 
     @PutMapping("/welcome/{workflowId}")
     public Mono<Customer> welcome(@RequestBody(required = false) Customer customer,@PathVariable String workflowId) {
-        Flux.range(1,1000).subscribe();
         return getTaskId(workflowId)
                 .flatMap(taskId -> webclient.post()
                         .uri("tasks")
@@ -167,9 +155,7 @@ public class CustomerController {
                 .bodyToMono(String.class)
                 .flatMap(responseBody -> {
                     try {
-                        ObjectMapper objectMapper = new ObjectMapper();
                         JsonNode responseJson = objectMapper.readTree(responseBody);
-
                         JsonNode tasksArray = responseJson.get("tasks");
                         for (JsonNode task : tasksArray) {
                             String taskStatus = task.get("status").asText();
