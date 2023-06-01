@@ -32,7 +32,7 @@ const data = new SharedArray("ssm", function() {
 // Reading random customerData from the JSON file
 const customerData = data[Math.floor(Math.random() * data.length)];
 
-const rootUrl = "https://localhost:8085/customer";
+const rootUrl = "https://conductor-server:8085/customer";
 
 const httpResTime = new Trend('http_res_time');
 
